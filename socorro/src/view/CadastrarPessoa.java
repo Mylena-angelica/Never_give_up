@@ -1,141 +1,109 @@
 package view;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import control.*;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
-public class CT implements ActionListener, ListSelectionListener {		
-	private JFrame janela;
-	private JLabel titulo;
-	private JButton cadastroAluno;
-	private JButton refreshAluno;
-	private JButton cadastroProf;
-	private JButton refreshProf;
-	private static ControleDados dados;
-	private JList<String> listaAlunosCadastrados;
-	private JList<String> listaProfsCadastrados;
-	private String[] listaNomes = new String[50];
-
-	public void mostrarDados(ControleDados d, int op){
-		dados = d;
-
-		switch (op) {
-		case 1:// Mostrar dados de alunos cadastrados (JList)
-			listaNomes = new ControleAluno(dados).getNomeAluno();
-			listaAlunosCadastrados = new JList<String>(listaNomes);
-			janela = new JFrame("Alunos");
-			titulo = new JLabel("Alunos Cadastrados");
-			cadastroAluno = new JButton("Cadastrar");
-			refreshAluno = new JButton("Refresh");
-
-			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(90, 10, 250, 30);
-			listaAlunosCadastrados.setBounds(20, 50, 350, 120);
-			listaAlunosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaAlunosCadastrados.setVisibleRowCount(10);
-
-			cadastroAluno.setBounds(70, 177, 100, 30);
-			refreshAluno.setBounds(200, 177, 100, 30);
-
-			janela.setLayout(null);
-
-			janela.add(titulo);
-			janela.add(listaAlunosCadastrados);
-			janela.add(cadastroAluno);
-			janela.add(refreshAluno);
-
-			janela.setSize(400, 250);
-			janela.setVisible(true);
-
-			cadastroAluno.addActionListener(this);
-			refreshAluno.addActionListener(this);
-			listaAlunosCadastrados.addListSelectionListener(this);
-
-			break;
-
-		case 2:// Mostrar dados de professores cadastrados (JList)
-			listaNomes = new ControleProfessor(dados).getNomeProf();
-			listaProfsCadastrados = new JList<String>(listaNomes);
-			janela = new JFrame("Professores");
-			titulo = new JLabel("Professores Cadastrados");
-			cadastroProf = new JButton("Cadastrar");
-			refreshProf = new JButton("Refresh");
-
-			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(90, 10, 250, 30);
-			listaProfsCadastrados.setBounds(20, 50, 350, 120);
-			listaProfsCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaProfsCadastrados.setVisibleRowCount(10);
+import model.Pessoa;
 
 
-			cadastroProf.setBounds(70, 177, 100, 30);
-			refreshProf.setBounds(200, 177, 100, 30);
-
-			janela.setLayout(null);
-
-			janela.add(titulo);
-			janela.add(listaProfsCadastrados);
-			janela.add(cadastroProf);
-			janela.add(refreshProf);
-
-			janela.setSize(400, 250);
-			janela.setVisible(true);
-
-			cadastroProf.addActionListener(this);
-			refreshProf.addActionListener(this);
-			listaProfsCadastrados.addListSelectionListener(this);
-			break;
-
-		default:
-			JOptionPane.showMessageDialog(null,"Op��o n�o encontrada!", null, 
-					JOptionPane.ERROR_MESSAGE);
-		}
-
-	}
-
-
-
-	//Captura eventos relacionados aos bot�es da interface
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
+public class CadastrarPessoa extends JFrame implements ActionListener {	
+	
+		private static final long serialVersionUID = 1L;
 		
-		//Cadastro de novo aluno
-		if(src == cadastroAluno)
-			new TelaDetalhePessoa().inserirEditar(1, dados, this, 0);
+		private JPanel painel = new JPanel();
+		private static JFrame janela = new JFrame("Pessoa");
+		private static JLabel titulo = new JLabel("Cadastro de Pessoa");		
+		private JButton cadastrar = new JButton("Cadastrar");
+		private JButton cancelar = new JButton("Cancelar");
+		private JLabel nomeTxt = new JLabel("Qual o seu nome? ");		
+			JTextField nome = new JTextField();
+		private JLabel dtNascimentoTxt = new JLabel("Qual a sua data de nascimento? ");
+			JTextField dtNascimento = new JTextField();
 
-		//Cadastro de novo professor
-		if(src == cadastroProf)
-			new TelaDetalhePessoa().inserirEditar(2, dados, this, 0);
+		public CadastrarPessoa ()
+		{
+			
+			janela.setBounds(100, 100, 600, 600);
+			painel.setBorder(new EmptyBorder(5, 5, 5, 5));
+			painel.setLayout(new BorderLayout(0, 0));
+			setContentPane(painel);
+			painel.setBorder(new EmptyBorder(5, 5, 5, 5));
+			painel.setLayout(new BorderLayout(0, 0));
+					
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
-		if(src == refreshAluno) {
-			listaAlunosCadastrados.setListData(new ControleAluno(dados).getNomeAluno());			
-			listaAlunosCadastrados.updateUI();
+			titulo.setFont(new Font("Arial", Font.BOLD, 22));
+			titulo.setHorizontalAlignment(SwingConstants.CENTER);
+			titulo.setBounds(50, 0, 500, 50);
+			janela.add(titulo);
+			
+			
+			nomeTxt.setFont(new Font("DIALOG_INPUT", Font.PLAIN, 18));
+			nomeTxt.setBounds(50, 130, 400, 20);
+			nome.setBounds(50, 180, 500, 30);
+			nome.setColumns(10);
+			janela.add(nome);
+			janela.add(nomeTxt);
+			
+			dtNascimentoTxt.setFont(new Font("DIALOG_INPUT", Font.PLAIN, 18));
+			dtNascimentoTxt.setBounds(50, 290, 400, 20);
+			dtNascimento.setBounds(50, 340, 500, 30);
+			dtNascimento.setColumns(10);
+			janela.add(dtNascimento);
+			janela.add(dtNascimentoTxt);
+			
+			
+			
+			cadastrar.setFont(new Font("DIALOG_INPUT", Font.PLAIN, 18));
+			cadastrar.setBackground(Color.pink);
+			cadastrar.setForeground(Color.BLACK);
+			cadastrar.setBounds(50, 480, 240, 50);
+			janela.add(cadastrar);
+			
+			cancelar.setFont(new Font("DIALOG_INPUT", Font.PLAIN, 18));
+			cancelar.setBackground(new Color (255, 246, 249));
+			cancelar.setForeground(Color.BLACK);
+			cancelar.setBounds(310, 480, 240, 50);
+			janela.add(cancelar);
+			
+			
+			janela.setLayout(null);
+			janela.setVisible(true);
+			
+			cadastrar.addActionListener(this);
+			cancelar.addActionListener(this);
+		}
+		
+		
+		public void actionPerformed(ActionEvent e) {
+			Object click = e.getSource();
+
+			if(click == cadastrar) {
+				new Menu();
+				janela.setVisible(false);
+			} 
+			
+			if(click == cancelar) {
+				new Menu();
+				janela.setVisible(false);
+			}
+				
 		}
 
-		// Atualiza a lista de nomes de professores mostrada no JList
-		if(src == refreshProf) {
-			listaProfsCadastrados.setListData(new ControleProfessor(dados).getNomeProf());
-			listaProfsCadastrados.updateUI();
-		}
+
+
+
 
 	}
-
-	//Captura eventos relacionados ao JList
-	public void valueChanged(ListSelectionEvent e) {
-		Object src = e.getSource();
-
-		if(e.getValueIsAdjusting() && src == listaAlunosCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(3, dados, this, 
-					listaAlunosCadastrados.getSelectedIndex());
-		}
-
-		if(e.getValueIsAdjusting() && src == listaProfsCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(4, dados, this, 
-					listaProfsCadastrados.getSelectedIndex());
-		}
-	}
-
-}

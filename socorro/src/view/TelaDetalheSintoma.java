@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,15 +10,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
 import control.*;
 
 public class TelaDetalheSintoma implements ActionListener {
 
 	private JFrame janela;
+	private JLabel labelNome = new JLabel("Nome: ");
+	private JTextField valorNome;
 	private JLabel labelData = new JLabel("Data do cadastro: ");
 	private JTextField valorData;
 	private JLabel labelIntensidade = new JLabel("Intensidade: ");
 	private JTextField valorIntensidade;
+	private JLabel labelLocal = new JLabel("Local: ");
+	private JTextField valorLocal;	
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private String[] novoDado = new String[9];
@@ -32,74 +41,63 @@ public class TelaDetalheSintoma implements ActionListener {
 		posicao = pos;
 		dados = d;
 
-		if (op == 1) s = "Cadastro de Sintoma Mental";
-		if (op == 2) s = "Cadastro de Sintoma Físico";
-		if (op == 3) s = "Detalhe de Sintoma Mental";
-		if (op == 4) s = "Detalhe de Sintoma Físico";
+		if (op == 1) s = "Cadastro de sintoma mental";
+		if (op == 2) s = "Cadastro de sintoma fisico";
+		if (op == 3) s = "Detalhe de sintoma mental";
+		if (op == 4) s = "Detalhe de sintoma fisico";
 
-		janela = new JFrame(s);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		janela.setBounds(100, 100, 600, 600);		
+		janela.setLayout(null);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setVisible(true);
 
 		//Preenche dados com dados do aluno clicado
 		if (op == 3) {
-			valorNome = new JTextField(dados.getAlunos()[pos].getNome(), 200);
-			valorEnd = new JTextField(dados.getAlunos()[pos].getEndereco(),200);
-			valorHoraAula = new JTextField(200);
-			valorCPF = new JTextField(String.valueOf(dados.getAlunos()[pos].getCPF()), 200);
-			valorID = new JTextField(String.valueOf(dados.getAlunos()[pos].getNumID()), 200);
-			valorDDD = new JTextField(String.valueOf(dados.getAlunos()[pos].getNumTel().getDDD()), 3);
-			valorTelefone = new JTextField(String.valueOf(dados.getAlunos()[pos].getNumTel().getNumero()), 10);			
+			valorNome = new JTextField(dados.getMentais()[pos].getNomeMental(), 200);
+			valorData = new JTextField(String.valueOf(dados.getMentais()[pos].getCadastro()), 200);
+			valorIntensidade = new JTextField(String.valueOf(dados.getMentais()[pos].getIntensidade()), 200);
+					
 
 		} else if (op == 4) { //Preenche dados com dados do professor clicado 
-			valorNome = new JTextField(dados.getProfessores()[pos].getNome(), 200);
-			valorHoraAula = new JTextField(String.valueOf(
-					dados.getProfessores()[pos].getValorHoraAula()),200);
-			valorEnd = new JTextField(200);
-			valorCPF = new JTextField(String.valueOf(dados.getProfessores()[pos].getCPF()), 200);
-			valorID = new JTextField(String.valueOf(dados.getProfessores()[pos].getNumID()), 200);
-			valorDDD = new JTextField(
-					String.valueOf(dados.getProfessores()[pos].getNumTel().getDDD()), 3);
-			valorTelefone = new JTextField(
-					String.valueOf(dados.getProfessores()[pos].getNumTel().getNumero()), 10);
+			valorNome = new JTextField(dados.getFisicos()[pos].getNomeFisico(), 200);
+			valorLocal = new JTextField(dados.getFisicos()[pos].getLocal(), 200);
+			valorData = new JTextField(String.valueOf(dados.getFisicos()[pos].getCadastro()), 200);
+			valorIntensidade = new JTextField(String.valueOf(dados.getFisicos()[pos].getIntensidade()), 200);
 
 		} else { //N�o preenche com dados
 
 			valorNome = new JTextField(200);
-			valorEnd = new JTextField(200);
-			valorHoraAula = new JTextField(200);
-			valorCPF = new JTextField(200);
-			valorID = new JTextField(200);
-			valorDDD = new JTextField(3);
-			valorTelefone = new JTextField(10);
+			valorData = new JTextField(200);
+			valorLocal = new JTextField(200);
+			valorIntensidade = new JTextField(200);
+			
 
 			botaoSalvar.setBounds(245, 175, 115, 30);
 		}
 
 		labelNome.setBounds(30, 20, 150, 25);
 		valorNome.setBounds(180, 20, 180, 25);
-		labelEnd.setBounds(30, 50, 150, 25);
-		valorEnd.setBounds(180, 50, 180, 25);
-		labelHoraAula.setBounds(30, 50, 180, 25);
-		valorHoraAula.setBounds(180, 50, 180, 25);		
-		labelCPF.setBounds(30, 80, 150, 25);
-		valorCPF.setBounds(180, 80, 180, 25);
-		labelID.setBounds(30, 110, 150, 25);
-		valorID.setBounds(180, 110, 180, 25);
-		labelTelefone.setBounds(30, 140, 150, 25);
-		valorDDD.setBounds(180, 140, 28, 25);
-		valorTelefone.setBounds(210, 140, 65, 25);
+		labelData.setBounds(30, 50, 150, 25);
+		valorData.setBounds(180, 50, 180, 25);
+		labelLocal.setBounds(30, 50, 180, 25);
+		valorLocal.setBounds(180, 50, 180, 25);		
+		labelIntensidade.setBounds(30, 80, 150, 25);
+		valorIntensidade.setBounds(180, 80, 180, 25);
+		
 
 		//Coloca os campos relacionados a endereco se aluno
 		if (op == 1 || op == 3 ) {
-			this.janela.add(labelEnd);
-			this.janela.add(valorEnd);
+			this.janela.add(labelNome);
+			this.janela.add(valorNome);
 
 		}
 
 		//Coloca campos relacionados a valor hora/aula se professor
 		if (op == 2 || op == 4) {
 
-			this.janela.add(labelHoraAula);
-			this.janela.add(valorHoraAula);
+			this.janela.add(labelLocal);
+			this.janela.add(valorLocal);
 		}
 
 		//Coloca botoes de excluir e salvar
@@ -111,18 +109,17 @@ public class TelaDetalheSintoma implements ActionListener {
 
 		this.janela.add(labelNome);
 		this.janela.add(valorNome);
-		this.janela.add(labelCPF);
-		this.janela.add(valorCPF);
-		this.janela.add(labelID);
-		this.janela.add(valorID);
-		this.janela.add(labelTelefone);
-		this.janela.add(valorDDD);
-		this.janela.add(valorTelefone);
+		this.janela.add(labelData);
+		this.janela.add(valorData);
+		this.janela.add(labelLocal);
+		this.janela.add(valorLocal);
+		this.janela.add(labelIntensidade);
+		this.janela.add(valorIntensidade);
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(400, 250);
+		this.janela.setBounds(100, 100, 600, 600);
 		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
@@ -136,24 +133,24 @@ public class TelaDetalheSintoma implements ActionListener {
 			try {
 				boolean res;
 				if(opcao == 1) //cadastro de novo aluno
-					novoDado[0] = Integer.toString(dados.getQtdAlunos());
+					novoDado[0] = Integer.toString(dados.getQtdMentais());
 				else if (opcao == 2) // cadastro de novo prof
-					novoDado[0] = Integer.toString(dados.getQtdProfs());
+					novoDado[0] = Integer.toString(dados.getQtdFisicos());
 				else // edicao de dado existente
 					novoDado[0] = Integer.toString(posicao);
 
 				novoDado[1] =  valorNome.getText();
-				novoDado[3] =  valorCPF.getText();
-				novoDado[4] =  valorID.getText();
-				novoDado[5] =  valorDDD.getText();
-				novoDado[6] =  valorTelefone.getText();
+				novoDado[3] =  valorData.getText();
+				novoDado[4] =  valorLocal.getText();
+				novoDado[5] =  valorIntensidade.getText();
+				
 
 				if (opcao == 1 || opcao == 3) {
-					novoDado[2] =  valorEnd.getText();
-					res = dados.inserirEditarAluno(novoDado);
+					novoDado[2] =  valorNome.getText();
+					res = dados.inserirEditarMental(novoDado);
 				} else {
-					novoDado[2] =  valorHoraAula.getText();
-					res = dados.inserirEditarProf(novoDado);
+					novoDado[2] =  valorLocal.getText();
+					res = dados.inserirEditarFisicos(novoDado);
 				}
 
 				if(res) {
@@ -172,13 +169,13 @@ public class TelaDetalheSintoma implements ActionListener {
 			boolean res = false;
 
 			if (opcao == 3) {//exclui aluno
-				res = dados.removerAluno(posicao);
+				res = dados.removerMental(posicao);
 				if (res) mensagemSucessoExclusao(); 
 				else mensagemErroExclusaoAluno(); 
 			}
 				
 			if (opcao == 4){ //exclui professor
-				res = dados.removerProfessor(posicao);
+				res = dados.removerFisico(posicao);
 				if (res) mensagemSucessoExclusao(); 
 				else mensagemErroExclusaoProf(); 
 			}

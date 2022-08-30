@@ -15,155 +15,132 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import control.*;
 
 
-public class Menu extends JFrame implements ActionListener {
+public class Menu implements ActionListener {
 	
-		private static JFrame janela = new JFrame("Meu Diário Menstrual");
-		private static JLabel titulo = new JLabel("O que você deseja fazer?");
-		private static JButton cadastro_pessoa = new JButton("Cadastrar Pessoa");
-		private static JButton cadastro_ciclo = new JButton("Cadastrar novo Ciclo Menstrual");
-		private static JButton cadastro_sintoma_fisico = new JButton("Cadastrar um Sintoma Físico");
-		private static JButton cadastro_sintoma_mental = new JButton("Cadastrar um Sintoma Mental");
-		private static JButton relatorio = new JButton("Diários");
-		private JPanel painel = new JPanel (); 
-		//private JLabel fundo = new JLabel ("");
-
-	//	public static ControleDados dados = new ControleDados();
-	 
-		private static final long serialVersionUID = 1L;
+	private static JFrame janela = new JFrame("Meu diário menstrual");
+	private static JLabel titulo = new JLabel("O que você deseja fazer?");
+	private static JButton pessoa = new JButton("Cadastrar pessoa");
+	private static JButton ciclo = new JButton("Cadastrar novo ciclo");
+	private static JButton mental = new JButton("Sintomas mentais");
+	private static JButton fisico = new JButton("Sintomas físicos");
+	private static JButton relatorio = new JButton("Diários");
+	public static ControleDados dados = new ControleDados();
+	private JPanel painel = new JPanel (); 
+	
+		
+	public Menu() {
+		
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		janela.setBounds(100, 100, 600, 600);
+		titulo.setBounds(50, 0, 500, 50);	
+		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		painel.setLayout(new BorderLayout(0, 0));
 
 		
-		public Menu() {	
-			
-			
-			//fundo.setBounds(680, 382, 100, 69);
-			//fundo.setIcon(new ImageIcon(TelaInicial.class.getResource("/view/imagens/back.png")));
-			///add(fundo);
-			
-			//setBackground(new Color(245, 245, 220));
-			//setBounds(100, 100, 830, 522);
-			//setLayout(null);
-			
-			
-				
-			janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//janela.setSize(400, 250);
-			
-			janela.setBounds(100, 100, 600, 600);
-			titulo.setBounds(50, 0, 500, 50);
+		titulo.setFont(new Font("Arial", Font.BOLD, 22));
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
+		janela.setLayout(null);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setVisible(true);
+		
+		janela.add(titulo);
+		janela.add(pessoa);
+		janela.add(ciclo);
+		janela.add(fisico);
+		janela.add(mental);
+		janela.add(relatorio);
+		
+		pessoa.setFont(new Font("Arial", Font.PLAIN, 20));
+		pessoa.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));		
+		pessoa.setOpaque(true);
+		pessoa.setBackground(new Color(205, 180, 219));
+		pessoa.setForeground(Color.BLACK);
+		pessoa.setBounds(50, 70, 500, 50);
+		
+		ciclo.setFont(new Font("Arial", Font.PLAIN, 20));
+		ciclo.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
+		ciclo.setOpaque(true);
+		ciclo.setBackground(new Color(255, 200, 221));
+		ciclo.setForeground(Color.BLACK);
+		ciclo.setBounds(50, 150, 500, 50);
+		
+		fisico.setFont(new Font("Arial", Font.PLAIN, 20));
+		fisico.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
+		fisico.setOpaque(true);
+		fisico.setBackground(new Color(255, 175, 204));
+		fisico.setForeground(Color.BLACK);
+		fisico.setBounds(50, 230, 500, 50);
+		
+		mental.setFont(new Font("Arial", Font.PLAIN, 20));
+		mental.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
+		ciclo.setOpaque(true);
+		mental.setBackground(new Color(189, 224, 254));
+		mental.setForeground(Color.DARK_GRAY);			
+		mental.setBounds(50, 310, 500, 50);
+		
+		relatorio.setFont(new Font("Arial", Font.PLAIN, 20));
+		relatorio.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
+		relatorio.setOpaque(true);
+		relatorio.setBackground(new Color(162, 210, 255));
+		relatorio.setForeground(Color.DARK_GRAY);			
+		relatorio.setBounds(50, 390, 500, 50);
+		
 
-			//janela.setContentPane(pane);	
-			painel.setBorder(new EmptyBorder(5, 5, 5, 5));
-			painel.setLayout(new BorderLayout(0, 0));
-
-			
-			titulo.setFont(new Font("Arial", Font.BOLD, 22));
-			titulo.setHorizontalAlignment(SwingConstants.CENTER);
-			
-			
-			janela.setLayout(null);
-			
-			janela.add(titulo);
-			janela.add(cadastro_pessoa);
-			janela.add(cadastro_ciclo);
-			janela.add(cadastro_sintoma_fisico);
-			janela.add(cadastro_sintoma_mental);
-			janela.add(relatorio);
-
-			janela.setVisible(true);
-			
-			
-
-			cadastro_pessoa.setFont(new Font("Arial", Font.PLAIN, 20));
-			cadastro_pessoa.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));		
-			cadastro_pessoa.setOpaque(true);
-			cadastro_pessoa.setBackground(new Color(205, 180, 219));
-			cadastro_pessoa.setForeground(Color.BLACK);
-			cadastro_pessoa.setBounds(50, 70, 500, 50);
-			
-			cadastro_ciclo.setFont(new Font("Arial", Font.PLAIN, 20));
-			cadastro_ciclo.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
-			cadastro_ciclo.setOpaque(true);
-			cadastro_ciclo.setBackground(new Color(255, 200, 221));
-			cadastro_ciclo.setForeground(Color.BLACK);
-			cadastro_ciclo.setBounds(50, 150, 500, 50);
-			
-			cadastro_sintoma_fisico.setFont(new Font("Arial", Font.PLAIN, 20));
-			cadastro_sintoma_fisico.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
-			cadastro_sintoma_fisico.setOpaque(true);
-			cadastro_sintoma_fisico.setBackground(new Color(255, 175, 204));
-			cadastro_sintoma_fisico.setForeground(Color.BLACK);
-			cadastro_sintoma_fisico.setBounds(50, 230, 500, 50);
-			
-			cadastro_sintoma_mental.setFont(new Font("Arial", Font.PLAIN, 20));
-			cadastro_sintoma_mental.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
-			cadastro_ciclo.setOpaque(true);
-			cadastro_sintoma_mental.setBackground(new Color(189, 224, 254));
-			cadastro_sintoma_mental.setForeground(Color.DARK_GRAY);			
-			cadastro_sintoma_mental.setBounds(50, 310, 500, 50);
-			
-			relatorio.setFont(new Font("Arial", Font.PLAIN, 20));
-			relatorio.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
-			relatorio.setOpaque(true);
-			relatorio.setBackground(new Color(162, 210, 255));
-			relatorio.setForeground(Color.DARK_GRAY);			
-			relatorio.setBounds(50, 390, 500, 50);
-			
-			
 		}
+	
+	public static void main(String[] args) {
+		Menu menu = new Menu();
 		
-		
-		public static void main(String[] args) {
-			Menu menu = new Menu();
-			
-			
-			
-						
-			cadastro_pessoa.addActionListener(menu);
-			cadastro_ciclo.addActionListener(menu);
-			cadastro_sintoma_fisico.addActionListener(menu);
-			cadastro_sintoma_mental.addActionListener(menu);
-			relatorio.addActionListener(menu);
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			Object click = e.getSource();
-
-			if(click == cadastro_pessoa) {
-				new CadastrarPessoa();
-				janela.setVisible(false);
-			}
-				
-			
-			if(click == cadastro_ciclo) {
-				new CadastrarCiclo();
-				janela.setVisible(false);
-			}
-				
-			
-			if(click == cadastro_sintoma_fisico) {
-				new TelaSintoma().mostrarDados(dados, 1);
-				janela.setVisible(false);
-			}
-				
-			
-			if(click == cadastro_sintoma_mental) {
-				new TelaSintoma().mostrarDados(dados, 2);
-				janela.setVisible(false);
-			}
-				
-			
-			if(click == relatorio) {
-				new TelaDiario();
-				janela.setVisible(false);
-			}
-				
-		
-		}
-		
-		
-		
-						
-			
+		pessoa.addActionListener(menu);
+		ciclo.addActionListener(menu);
+		fisico.addActionListener(menu);
+		mental.addActionListener(menu);
+		relatorio.addActionListener(menu);
 	}
+	
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();	
+		
+		if(src == mental)
+			new TelaSintoma().mostrarDados(dados, 1);
+		
+		if(src == fisico)
+			new TelaSintoma().mostrarDados(dados, 2);
+		
+		if(src == pessoa) {
+			new CadastrarPessoa().setVisible(false);
+			}
+		if(src == ciclo) {
+			new CadastrarCiclo().setVisible(false);
+			}
+		//if(src == relatorio) {
+			//new TelaDiario().setVisible(false);
+			//}
+		
+	
+		
+		//if(src == curso)
+			//JOptionPane.showMessageDialog(null, 
+					//"Ainda precisam ser implementadas as funcionalidades\n"
+					//+ "relacionadas a curso e a matr�cula", null, 
+					//JOptionPane.INFORMATION_MESSAGE);
+		
+		
+			
+		}
+		}
+	
+
+
+
+
+
+		
+		
+
+		
