@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
+
+import control.ControleDados;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -39,6 +42,7 @@ public class CadastrarCiclo extends JFrame implements ActionListener {
 		JTextField dataInicio = new JTextField();
 	private JLabel dataFinalTxt = new JLabel("Data do final da menstrução (Ex: 20/02/2022): ");
 		JTextField dataFinal = new JTextField();
+	public static ControleDados dados= new ControleDados();
 		//private JFormattedTextField dataInicialInput = new JFormattedTextField(new MaskFormatter("##/##/####"));
 		
 

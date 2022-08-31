@@ -34,10 +34,6 @@ public class ControleFisicos{
 		return f[i].getNomeFisico();
 	}
 	
-	public String getLocal(int i) {
-		String local = String.valueOf(f[i].getLocal());
-		return local;
-	}
 	
 	public String getCadastro(int i) {
 		String cadastro = String.valueOf(f[i].getCadastro());

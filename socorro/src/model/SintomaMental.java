@@ -1,7 +1,6 @@
 package model;
 
 
-import java.util.Date;
 
 public class SintomaMental extends Sintoma {
 	
@@ -10,7 +9,7 @@ public class SintomaMental extends Sintoma {
 	
 	
 	
-	public SintomaMental(String n, int i, Date d, int nu) {
+	public SintomaMental(String n, int i, String d, int nu) {
 		this.nomeMental = n;
 		this.intensidade=i;
 		this.cadastro=d;
@@ -41,12 +40,14 @@ public class SintomaMental extends Sintoma {
 		this.intensidade = intensidade;
 	}
 
-	public Date getCadastro() {
+	public String getCadastro() {
 		return cadastro;
 	}
-	public void setCadastro(Date cadastro) {
+	public void setCadastro(String cadastro) {
 		this.cadastro= cadastro;
 	}
+
+
 	
 	}
 

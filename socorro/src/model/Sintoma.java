@@ -1,9 +1,9 @@
 package model;
 
-import java.util.Date;
+
 
 public abstract class Sintoma {
-	protected Date cadastro;
+	protected String cadastro;
 	protected int intensidade;
 	protected int numSintomas = 0;
 	
@@ -14,13 +14,13 @@ public abstract class Sintoma {
 	
 	
 
-	public  Date getCadastro() {
+	public  String getCadastro() {
 		return cadastro;
 	}
 
 
 
-	public void setCadastro(Date cadastro) {
+	public void setCadastro(String cadastro) {
 		this.cadastro = cadastro;
 	}
 

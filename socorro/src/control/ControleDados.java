@@ -35,6 +35,17 @@ public class ControleDados {
 		return this.d.getMentais();
 	}
 	
+	public Pessoa[] getPessoas() {
+		return this.d.getPessoas();
+	}
+
+	public Ciclo[] getCiclos() {
+		return this.d.getCiclos();
+	}
+	
+	public int getQtdCiclos() {
+		return this.d.getQtdCiclos();
+	}
 
 
 	public boolean inserirEditarMental(String[] dadosMentais) {
@@ -43,8 +54,8 @@ public class ControleDados {
 			return false;
 		} else {
 				SintomaMental m = new SintomaMental(dadosMentais[1], Integer.parseInt(dadosMentais[2]), 
-						Calendar.getInstance().getTime(), Integer.parseInt(dadosMentais[4])); 
-				d.inserirEditarMental(m, 0);
+						dadosMentais[3], Integer.parseInt(dadosMentais[4])); 
+				d.inserirEditarMental(m,Integer.parseInt(dadosMentais[0]));
 				return true;
 		}
 	}
@@ -55,7 +66,7 @@ public class ControleDados {
 			return false;
 		} else {
 				SintomaFisico f = new SintomaFisico(dadosFisicos[1], dadosFisicos[2], Integer.parseInt(dadosFisicos[3]), 
-						Calendar.getInstance().getTime(), Integer.parseInt(dadosFisicos[6]));
+						dadosFisicos[4], Integer.parseInt(dadosFisicos[5]));
 				d.inserirEditarFisico(f, Integer.parseInt(dadosFisicos[0]));
 				return true;
 		}

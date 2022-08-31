@@ -3,7 +3,7 @@ package model;
 import java.util.*;
 
 public class Dados {
-	private  Pessoa[] pessoas = new Pessoa[50];
+	private static  Pessoa[] pessoas = new Pessoa[50];
 	private int qtdPessoas = 1;
 	private Ciclo [] ciclos = new Ciclo[50];
 	private int qtdCiclos = 0;
@@ -17,9 +17,9 @@ public class Dados {
 	public void fillWithSomeData() {
 		Date d = Calendar.getInstance().getTime();
 		for(int i = 0; i < 5; i++) {
-			pessoas[i] = new Pessoa();
-			fisicos[i] = new SintomaFisico("Sintoma"+i, "Local do corpo"+i, i, d, i);
-			mentais[i] = new SintomaMental("Sintoma"+i, i, d, i);
+			pessoas[i] = new Pessoa("Nome"+i,d);
+			fisicos[i] = new SintomaFisico("Cólica","local",3+5,"25/09/2022",1);
+			mentais[i] = new SintomaMental("Sintoma"+i, i, "21/09/2011", i);
 			ciclos[i] = new Ciclo(pessoas[i],d,d,i, mentais[i], fisicos[i]);
 						
 		}
@@ -31,14 +31,20 @@ public class Dados {
 		
 	}
 	
-	public Pessoa[] getPessoas() {
+	
+	
+	public final Pessoa[] getPessoas() {
 		return pessoas;
 	}
-	
-	public void setPessoas(Pessoa[] pessoas) {
-		this.pessoas = pessoas;
+
+
+
+	public static final void setPessoas(Pessoa[] pessoas) {
+		Dados.pessoas = pessoas;
 	}
-	
+
+
+
 	public final int getQtdPessoas() {
 		return qtdPessoas;
 	}

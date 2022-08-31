@@ -1,29 +1,27 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
 import control.*;
 
 public class TelaDetalheSintoma implements ActionListener {
 
 	private JFrame janela;
-	private JLabel labelNome = new JLabel("Nome: ");
-	private JTextField valorNome;
-	private JLabel labelData = new JLabel("Data do cadastro: ");
-	private JTextField valorData;
+	private JLabel labelMental = new JLabel("Sintoma mental: ");
+	private JTextField valorMental;
 	private JLabel labelIntensidade = new JLabel("Intensidade: ");
 	private JTextField valorIntensidade;
+	private JLabel labelCadastro = new JLabel("Data: ");
+	private JTextField valorCadastro;
+	private JLabel labelFisico = new JLabel("Sintoma físico: ");
+	private JTextField valorFisico;
 	private JLabel labelLocal = new JLabel("Local: ");
 	private JTextField valorLocal;	
 	private JButton botaoExcluir = new JButton("Excluir");
@@ -35,69 +33,71 @@ public class TelaDetalheSintoma implements ActionListener {
 	private String s;
 
 	public void inserirEditar(int op, ControleDados d, 
-			TelaSintoma p, int pos) {
+			TelaSintoma ts, int pos) {
 
 		opcao = op;
 		posicao = pos;
 		dados = d;
 
-		if (op == 1) s = "Cadastro de sintoma mental";
-		if (op == 2) s = "Cadastro de sintoma fisico";
-		if (op == 3) s = "Detalhe de sintoma mental";
-		if (op == 4) s = "Detalhe de sintoma fisico";
+		if (op == 1) s = "Cadastro sintomas mentais";
+		if (op == 2) s = "Cadastro sintomas fisicos";
+		if (op == 3) s = "Detalhe sintomas mentais";
+		if (op == 4) s = "Detalhe sintomas fisicos";
 
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		janela.setBounds(100, 100, 600, 600);		
-		janela.setLayout(null);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setVisible(true);
+		janela = new JFrame(s);
 
-		//Preenche dados com dados do aluno clicado
+		//Preenche dados com dados do sintoma mental clicado
 		if (op == 3) {
-			valorNome = new JTextField(dados.getMentais()[pos].getNomeMental(), 200);
-			valorData = new JTextField(String.valueOf(dados.getMentais()[pos].getCadastro()), 200);
-			valorIntensidade = new JTextField(String.valueOf(dados.getMentais()[pos].getIntensidade()), 200);
-					
+			valorIntensidade = new JTextField(dados.getMentais()[pos].getIntensidade());
+			valorCadastro = new JTextField(dados.getMentais()[pos].getCadastro());
+			valorMental = new JTextField(dados.getMentais()[pos].getNomeMental());
+			valorFisico= new JTextField(200);
+			
+			
+				
 
-		} else if (op == 4) { //Preenche dados com dados do professor clicado 
-			valorNome = new JTextField(dados.getFisicos()[pos].getNomeFisico(), 200);
-			valorLocal = new JTextField(dados.getFisicos()[pos].getLocal(), 200);
-			valorData = new JTextField(String.valueOf(dados.getFisicos()[pos].getCadastro()), 200);
-			valorIntensidade = new JTextField(String.valueOf(dados.getFisicos()[pos].getIntensidade()), 200);
+		} else if (op == 4) { //Preenche dados com dados do sintoma fisico clicado 
+			valorIntensidade = new JTextField(dados.getFisicos()[pos].getIntensidade());
+			valorCadastro = new JTextField(dados.getMentais()[pos].getCadastro());
+			valorFisico = new JTextField(dados.getFisicos()[pos].getNomeFisico());			
+			valorMental= new JTextField(200);
+		
 
 		} else { //N�o preenche com dados
 
-			valorNome = new JTextField(200);
-			valorData = new JTextField(200);
-			valorLocal = new JTextField(200);
+			valorMental = new JTextField(200);
 			valorIntensidade = new JTextField(200);
+			valorCadastro = new JTextField(200);
 			
+			valorFisico = new JTextField(200);
+		
 
 			botaoSalvar.setBounds(245, 175, 115, 30);
 		}
-
-		labelNome.setBounds(30, 20, 150, 25);
-		valorNome.setBounds(180, 20, 180, 25);
-		labelData.setBounds(30, 50, 150, 25);
-		valorData.setBounds(180, 50, 180, 25);
-		labelLocal.setBounds(30, 50, 180, 25);
-		valorLocal.setBounds(180, 50, 180, 25);		
-		labelIntensidade.setBounds(30, 80, 150, 25);
-		valorIntensidade.setBounds(180, 80, 180, 25);
 		
-
-		//Coloca os campos relacionados a endereco se aluno
+		labelIntensidade.setBounds(30, 20, 150, 25);
+		valorIntensidade.setBounds(180, 20, 180, 25);
+		labelCadastro.setBounds(30, 50, 150, 25);
+		valorCadastro.setBounds(180, 50, 180, 25);
+		labelMental.setBounds(30, 80, 150, 25);
+		valorMental.setBounds(180, 80, 180, 25);
+		labelFisico.setBounds(30, 80, 180, 25);
+		valorFisico.setBounds(180, 80, 180, 25);				
+		
+		
+		//Coloca os campos relacionados ao nome do sintoma mental
 		if (op == 1 || op == 3 ) {
-			this.janela.add(labelNome);
-			this.janela.add(valorNome);
+			this.janela.add(labelMental);
+			this.janela.add(valorMental);
 
 		}
 
-		//Coloca campos relacionados a valor hora/aula se professor
+		//Coloca campos relacionados ao sintoma fisico
 		if (op == 2 || op == 4) {
 
-			this.janela.add(labelLocal);
-			this.janela.add(valorLocal);
+			this.janela.add(labelFisico);
+			this.janela.add(valorFisico);
+			
 		}
 
 		//Coloca botoes de excluir e salvar
@@ -107,19 +107,20 @@ public class TelaDetalheSintoma implements ActionListener {
 			this.janela.add(botaoExcluir);
 		}
 
-		this.janela.add(labelNome);
-		this.janela.add(valorNome);
-		this.janela.add(labelData);
-		this.janela.add(valorData);
-		this.janela.add(labelLocal);
-		this.janela.add(valorLocal);
+		this.janela.add(labelMental);
+		this.janela.add(valorMental);
 		this.janela.add(labelIntensidade);
 		this.janela.add(valorIntensidade);
+		this.janela.add(labelCadastro);
+		this.janela.add(valorCadastro);
+		this.janela.add(labelFisico);
+		this.janela.add(valorFisico);
+		
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
 
-		this.janela.setBounds(100, 100, 600, 600);
+		this.janela.setSize(400, 250);
 		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
@@ -139,17 +140,16 @@ public class TelaDetalheSintoma implements ActionListener {
 				else // edicao de dado existente
 					novoDado[0] = Integer.toString(posicao);
 
-				novoDado[1] =  valorNome.getText();
-				novoDado[3] =  valorData.getText();
-				novoDado[4] =  valorLocal.getText();
-				novoDado[5] =  valorIntensidade.getText();
+				novoDado[1] =  valorIntensidade.getText();
+				novoDado[2] =  valorCadastro.getText();
 				
 
 				if (opcao == 1 || opcao == 3) {
-					novoDado[2] =  valorNome.getText();
+					novoDado[3] =  valorMental.getText();
 					res = dados.inserirEditarMental(novoDado);
 				} else {
-					novoDado[2] =  valorLocal.getText();
+					novoDado[3] =  valorFisico.getText();
+					
 					res = dados.inserirEditarFisicos(novoDado);
 				}
 
@@ -171,13 +171,13 @@ public class TelaDetalheSintoma implements ActionListener {
 			if (opcao == 3) {//exclui aluno
 				res = dados.removerMental(posicao);
 				if (res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoAluno(); 
+				else mensagemErroExclusaoMental(); 
 			}
 				
 			if (opcao == 4){ //exclui professor
 				res = dados.removerFisico(posicao);
 				if (res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoProf(); 
+				else mensagemErroExclusaoFisico(); 
 			}
 
 
@@ -205,7 +205,7 @@ public class TelaDetalheSintoma implements ActionListener {
 				JOptionPane.ERROR_MESSAGE);
 	}
 
-	public void mensagemErroExclusaoAluno() {
+	public void mensagemErroExclusaoMental() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
 				+ "Verifique se o aluno est� matriculado\n"
 				+ "em alguma disciplina. Se sim, cancele\n "
@@ -213,7 +213,7 @@ public class TelaDetalheSintoma implements ActionListener {
 				JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public void mensagemErroExclusaoProf() {
+	public void mensagemErroExclusaoFisico() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
 				+ "Verifique se o professor est� respons�vel\n"
 				+ "por alguma disciplina. Se sim, substitua\n "

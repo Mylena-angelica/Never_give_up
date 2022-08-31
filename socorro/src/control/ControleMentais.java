@@ -33,9 +33,7 @@ public class ControleMentais{
 	public String getNomeMental(int i) {		
 		return m[i].getNomeMental();
 	}
-	
-
-	
+		
 	public String getCadastro(int i) {
 		String cadastro = String.valueOf(m[i].getCadastro());
 		return cadastro;
@@ -45,9 +43,7 @@ public class ControleMentais{
 		return m[i].getIntensidade();
 	}
 
-	public void setQtdMentais(int qtdMentais) {
-		this.qtdMentais = qtdMentais;
-	}
+	
 	
 	
 		

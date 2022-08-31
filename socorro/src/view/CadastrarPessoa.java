@@ -6,6 +6,9 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.ControleDados;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -32,6 +35,7 @@ public class CadastrarPessoa extends JFrame implements ActionListener {
 			JTextField nome = new JTextField();
 		private JLabel dtNascimentoTxt = new JLabel("Qual a sua data de nascimento? ");
 			JTextField dtNascimento = new JTextField();
+		public static ControleDados dados= new ControleDados();
 
 		public CadastrarPessoa ()
 		{
@@ -92,7 +96,6 @@ public class CadastrarPessoa extends JFrame implements ActionListener {
 
 			if(click == cadastrar) {
 				new Menu();
-				janela.setVisible(false);
 			} 
 			
 			if(click == cancelar) {

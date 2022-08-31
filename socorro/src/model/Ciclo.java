@@ -10,6 +10,7 @@ public class Ciclo {
 	private int duracaoCiclo;
 	private SintomaMental sintomaMental;
 	private SintomaFisico sintomaFisico;
+	private String numero;
 	
 	
 	
@@ -25,6 +26,7 @@ public class Ciclo {
 
 	public void cadastrar() {
 		int qtd;
+		String numero = "Ciclo ";
 		Ciclo c = this;
 		SintomaFisico f = this.getSintomaFisico();
 		qtd = f.getNumSintomas();
@@ -36,7 +38,20 @@ public class Ciclo {
 		c.setDataFinalMenstruacao(dataFinalMenstruacao);
 		c.setDataInicioMenstruacao(dataInicioMenstruacao);
 		c.setDuracaoCiclo(qtd);
+		c.setNumero(numero);
 	}
+
+
+	public final String getNumero() {
+		return numero;
+	}
+
+
+
+	public final void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 
 
 	public Pessoa getPessoa() {
@@ -99,7 +114,7 @@ public class Ciclo {
 
 	
 	public String toString() {
-		return "Ciclo d@ " + pessoa.getNome() + "teve início em: " + dataInicioMenstruacao+ ", com duração de " + duracaoCiclo+
+		return "Ciclo" +numero+ "d@ " + pessoa.getNome() + "teve início em: " + dataInicioMenstruacao+ ", com duração de " + duracaoCiclo+
 				". Assim " + dataFinalMenstruacao+ "foi o último dia.";
 	}
 

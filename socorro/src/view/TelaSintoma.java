@@ -22,17 +22,17 @@ public class TelaSintoma implements ActionListener, ListSelectionListener {
 		dados = d;
 
 		switch (op) {
-		case 1:// Mostrar dados de alunos cadastrados (JList)
+		case 1:// Mostrar dados de Mentais cadastrados (JList)
 			listaNomes = new ControleMentais(dados).getNomeMental();
 			listaMentaisCadastrados = new JList<String>(listaNomes);
-			janela = new JFrame("Sintomas mentais");
-			titulo = new JLabel("Sintomas mentais cadastrados");
+			janela = new JFrame("Sintomas mentais.");
+			titulo = new JLabel("Sintomas mentais Cadastrados");
 			cadastroMental = new JButton("Cadastrar");
 			refreshMental = new JButton("Refresh");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(50, 0, 500, 50);
-			listaMentaisCadastrados.setBounds(50, 50, 290, 100);
+			titulo.setBounds(90, 10, 250, 30);
+			listaMentaisCadastrados.setBounds(20, 50, 350, 120);
 			listaMentaisCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 			listaMentaisCadastrados.setVisibleRowCount(10);
 
@@ -40,15 +40,13 @@ public class TelaSintoma implements ActionListener, ListSelectionListener {
 			refreshMental.setBounds(200, 177, 100, 30);
 
 			janela.setLayout(null);
-			
-			janela.setSize(400, 250);
 
 			janela.add(titulo);
 			janela.add(listaMentaisCadastrados);
 			janela.add(cadastroMental);
 			janela.add(refreshMental);
 
-			
+			janela.setSize(400, 250);
 			janela.setVisible(true);
 
 			cadastroMental.addActionListener(this);
@@ -57,8 +55,8 @@ public class TelaSintoma implements ActionListener, ListSelectionListener {
 
 			break;
 
-		case 2:// Mostrar dados de professores cadastrados (JList)
-			listaNomes = new ControleFisicos (dados).getNomeFisico();
+		case 2:// Mostrar dados de sintomas fisicos cadastrados (JList)
+			listaNomes = new ControleFisicos(dados).getNomeFisico();
 			listaFisicosCadastrados = new JList<String>(listaNomes);
 			janela = new JFrame("Sintomas físicos");
 			titulo = new JLabel("Sintomas físicos cadastrados");
@@ -66,8 +64,8 @@ public class TelaSintoma implements ActionListener, ListSelectionListener {
 			refreshFisico = new JButton("Refresh");
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(50, 0, 500, 50);
-			listaFisicosCadastrados.setBounds(50, 50, 290, 100);
+			titulo.setBounds(90, 10, 250, 30);
+			listaFisicosCadastrados.setBounds(20, 50, 350, 120);
 			listaFisicosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 			listaFisicosCadastrados.setVisibleRowCount(10);
 
@@ -97,6 +95,8 @@ public class TelaSintoma implements ActionListener, ListSelectionListener {
 
 	}
 
+
+
 	//Captura eventos relacionados aos bot�es da interface
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
@@ -119,7 +119,7 @@ public class TelaSintoma implements ActionListener, ListSelectionListener {
 		if(src == refreshFisico) {
 			listaFisicosCadastrados.setListData(new ControleFisicos(dados).getNomeFisico());
 			listaFisicosCadastrados.updateUI();
-		}
+			}
 
 	}
 

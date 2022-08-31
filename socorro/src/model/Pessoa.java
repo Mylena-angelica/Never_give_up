@@ -2,12 +2,20 @@ package model;
 
 import java.util.Date;
 
+/**
+ * Recebe os dados gerais de pessoa, além de editar esses dados.
+ * @author Mylena e Sabrina. 
+ */
+
 public class Pessoa {
 	public String nome;
 	public Date nascimento;
+		
 	
-	
-	public Pessoa() {
+	public Pessoa(String n, Date nc) {
+		nome=n;
+		nascimento=nc;
+		
 		
 	}
 
@@ -29,4 +37,13 @@ public class Pessoa {
 	}
 
 	
+
+	//Talvez seja melhor na controle
+	
+	public void editarDados(String nome, Date nascimento, String senha) {
+		this.setNome(nome);
+		this.setNascimento(nascimento);		
+		
+		
+	}
 }

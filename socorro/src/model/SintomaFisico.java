@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+
 
 public class SintomaFisico extends Sintoma {
 	
@@ -9,11 +9,11 @@ public class SintomaFisico extends Sintoma {
 	
 	
 	
-	public SintomaFisico(String n, String l, int i, Date d,int nu) {
+	public SintomaFisico(String n, String l, int i, String cadastro,int nu) {
 		this.nomeFisico = n;
 		this.local= l;
 		this.intensidade=i;
-		this.cadastro= d;
+		this.cadastro= cadastro;
 		this.numSintomas=nu;
 		
 				
@@ -45,10 +45,10 @@ public class SintomaFisico extends Sintoma {
 		this.intensidade = intensidade;
 	}
 
-	public Date getCadastro() {
+	public String getCadastro() {
 		return cadastro;
 	}
-	public void setCadastro(Date cadastro) {
+	public void setCadastro(String cadastro) {
 		this.cadastro= cadastro;
 	}
 	
