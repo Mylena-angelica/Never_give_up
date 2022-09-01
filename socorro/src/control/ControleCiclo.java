@@ -1,9 +1,18 @@
 package control;
 
-
-import java.util.Date;
-
 import model.*;
+
+/**
+ * Classe que contém toda a lógica por trás da classe CadastrarCiclo.
+ * 
+ * @author Mylena e Sabrina.
+ * @since 2022
+ * @version 1.0 
+ * @see CadastrarCiclo
+ 
+ */
+
+
 
 public class ControleCiclo{
 	private Ciclo[] c;
@@ -21,7 +30,7 @@ public class ControleCiclo{
 			s[i] = c[i].getNumero();
 		}
 		
-		return s;
+		return s;  ///depois ve como faz para retornar Ciclo + numer0
 	}
 
 
@@ -44,10 +53,12 @@ public class ControleCiclo{
 		return c[i].getSintomaMental();
 	}
 	
-	public Date getDataInicioMenstruacao(int i) {
+	public String getDataInicioMenstruacao(int i) {
+		
 			return c[i].getDataInicioMenstruacao();
 		}
-	public Date getDataFinalMenstruacao(int i) {
+	public String getDataFinalMenstruacao(int i) {
+	
 		return c[i].getDataFinalMenstruacao();
 	}
 	public int getDuracaoCiclo(int i) {
@@ -57,8 +68,6 @@ public class ControleCiclo{
 		return c[i].getNumero();
 	}
 		
-	
-	
-	
+
 }
 

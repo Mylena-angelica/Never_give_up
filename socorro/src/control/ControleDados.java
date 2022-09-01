@@ -1,9 +1,17 @@
 package control;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import model.*;
+
+/**
+ * Classe que contém toda a lógica por trás da classe Dados.
+ * 
+ * @author Mylena e Sabrina.
+ * @since 2022
+ * @version 1.0 
+ * @see Dados
+ 
+ */
+
 
 public class ControleDados {
 	private Dados d = new Dados();
@@ -40,7 +48,7 @@ public class ControleDados {
 	}
 
 	public Ciclo[] getCiclos() {
-		return this.d.getCiclos();
+		return Dados.getCiclos();
 	}
 	
 	public int getQtdCiclos() {
@@ -59,7 +67,7 @@ public class ControleDados {
 				return true;
 		}
 	}
-	// a posicao 0 do vetor dadosAlunos indica onde os dados devem ser inseridos
+	
 	public boolean inserirEditarFisicos(String[] dadosFisicos) {
 		if(!dadosFisicos[3].matches("[0-9]+") || !dadosFisicos[4].matches("[0-9]+") || 
 				!dadosFisicos[5].matches("[0-9]+") || !dadosFisicos[6].matches("[0-9]+")) {
@@ -71,27 +79,38 @@ public class ControleDados {
 				return true;
 		}
 	}
+	public boolean inserirEditarCiclos(String[] dadosCiclos) {
+		if(!dadosCiclos[3].matches("[0-9]+") || !dadosCiclos[4].matches("[0-9]+") || 
+				!dadosCiclos[5].matches("[0-9]+") || !dadosCiclos[6].matches("[0-9]+")) {
+			return false;
+		} else {
+			Ciclo c = new Ciclo(dadosCiclos[1], dadosCiclos[2], Integer.parseInt(dadosCiclos[3]), 
+					dadosCiclos[4], Integer.parseInt(dadosCiclos[5]));
+			d.inserirEditarCiclo(c, Integer.parseInt(dadosCiclos[0]));
+			return true;
+			}
+	}
 	
 	public boolean removerMental(int i) {
 		int qtdCiclos = d.getQtdCiclos();
 		String mentalRemovido = d.getMentais()[i].getNomeMental();
 		String aux;
 		for (int j = 0; j < qtdCiclos; j++) { 
-			aux = d.getCiclos()[j].getSintomaMental().getNomeMental();
+			aux = Dados.getCiclos()[j].getSintomaMental().getNomeMental();
 			if(mentalRemovido.compareTo(aux) == 0) 
-				return false; //n�o � poss�vel remover aluno pois ele est� matriculado em um curso
+				return false; 
 		}
 		
-		if(i == (d.getQtdMentais() - 1)) { // O aluno a ser removido est� no final do array
+		if(i == (d.getQtdMentais() - 1)) { 
 			d.setQtdMentais(d.getQtdMentais() - 1);
 			d.getMentais()[d.getQtdMentais()] = null;
 			return true;
-		} else { // o aluno a ser removido est� no meio do array
+		} else { 
 			int cont = 0;
 			while(d.getMentais()[cont].getNomeMental().compareTo(mentalRemovido) != 0) {
 				cont++;
 			}
-			//Rotina swap
+			
 			for(int j = cont; j < d.getQtdMentais() - 1; j++) {
 				d.getMentais()[j] = null;
 				d.getMentais()[j] = d.getMentais()[j+1];
@@ -107,20 +126,20 @@ public class ControleDados {
 		String fisicoRemovido = d.getFisicos()[i].getNomeFisico();
 		String aux;
 		for (int j = 0; j < qtdCiclos; j++) {
-			aux = d.getCiclos()[j].getSintomaFisico().getNomeFisico();
+			aux = Dados.getCiclos()[j].getSintomaFisico().getNomeFisico();
 			if(fisicoRemovido.compareTo(aux) == 0) 
 				return false;
-			//n�o � poss�vel remover professor pois ele � respons�vel por um curso
+			
 		}
-		if(i == (d.getQtdFisicos() - 1)) { // O prof a ser removido est� no final do array
+		if(i == (d.getQtdFisicos() - 1)) { 
 			d.setQtdFisicos(d.getQtdFisicos() - 1);
 			d.getFisicos()[d.getQtdFisicos()] = null;
 			return true;
-		} else { // o prof a ser removido est� no meio do array
+		} else { 
 			int cont = 0;
 			while(d.getFisicos()[cont].getNomeFisico().compareTo(fisicoRemovido) != 0)
 				cont++;
-			//Rotina swap
+			
 			for(int j = cont; j < d.getQtdFisicos() - 1; j++) {
 				d.getFisicos()[j] = null;
 				d.getFisicos()[j] = d.getFisicos()[j+1];
@@ -131,5 +150,33 @@ public class ControleDados {
 		}
 	}
 
+	public boolean removerCiclo(int i) {
+		int qtdCiclos = d.getQtdCiclos();
+		String cicloRemovido = Dados.getCiclos()[i].getNumero();
+		String aux;
+		for (int j = 0; j < qtdCiclos; j++) {
+			aux = Dados.getCiclos()[j].getNumero();
+			if(cicloRemovido.compareTo(aux) == 0) 
+				return false;
+			
+		}
+		if(i == (d.getQtdCiclos() - 1)) { 
+			d.setQtdCiclos(d.getQtdCiclos() - 1);
+			Dados.getCiclos()[d.getQtdCiclos()] = null;
+			return true;
+		} else { 
+			int cont = 0;
+			while(Dados.getCiclos()[cont].getNumero().compareTo(cicloRemovido) != 0)
+				cont++;
+			
+			for(int j = cont; j < d.getQtdCiclos() - 1; j++) {
+				Dados.getCiclos()[j] = null;
+				Dados.getCiclos()[j] = Dados.getCiclos()[j+1];
+			}
+			Dados.getCiclos()[d.getQtdCiclos()] = null;
+			d.setQtdCiclos(d.getQtdCiclos() - 1);
+			return true;
+		}
+	}
 	
 }

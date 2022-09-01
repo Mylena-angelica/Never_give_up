@@ -1,18 +1,19 @@
 package model;
 
-import java.util.Date;
-
 /**
- * Recebe os dados gerais de pessoa, além de editar esses dados.
- * @author Mylena e Sabrina. 
- */
+* Classe Pessoa simula o comportamento de uma pessoa.
+* @author Mylena e Sabrina.
+* @since 2022
+* @version 1.0
+**/
 
 public class Pessoa {
 	public String nome;
-	public Date nascimento;
-		
+	public String nascimento;
 	
-	public Pessoa(String n, Date nc) {
+
+	
+	public Pessoa(String n, String nc) {
 		nome=n;
 		nascimento=nc;
 		
@@ -29,10 +30,10 @@ public class Pessoa {
 	}
 
 
-	public Date getNascimento() {
+	public String getNascimento() {
 		return nascimento;
 	}
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
 
@@ -40,7 +41,7 @@ public class Pessoa {
 
 	//Talvez seja melhor na controle
 	
-	public void editarDados(String nome, Date nascimento, String senha) {
+	public void editarDados(String nome, String nascimento) {
 		this.setNome(nome);
 		this.setNascimento(nascimento);		
 		

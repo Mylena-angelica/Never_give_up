@@ -1,6 +1,11 @@
 package model;
 
-
+/**
+* Classe Sintoma simula o comportamento de um sintoma e é a classe pai.
+* @author Mylena e Sabrina.
+* @since 2022
+* @version 2.0
+**/
 
 public abstract class Sintoma {
 	protected String cadastro;

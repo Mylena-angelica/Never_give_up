@@ -21,7 +21,14 @@ import java.awt.event.ActionEvent;
 
 import model.Pessoa;
 
-
+/**
+ * Página de cadastro de Pessoa.
+ * 
+ * @author Mylena e Sabrina.
+ * @since 2022
+ * @version 1.0 
+ 
+ */
 public class CadastrarPessoa extends JFrame implements ActionListener {	
 	
 		private static final long serialVersionUID = 1L;

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import control.*;
 
-public class TelaDetalheSintoma implements ActionListener {
+public class DetalheMental implements ActionListener {
 
 	private JFrame janela;
 	private JLabel labelMental = new JLabel("Sintoma mental: ");
@@ -19,11 +20,7 @@ public class TelaDetalheSintoma implements ActionListener {
 	private JLabel labelIntensidade = new JLabel("Intensidade: ");
 	private JTextField valorIntensidade;
 	private JLabel labelCadastro = new JLabel("Data: ");
-	private JTextField valorCadastro;
-	private JLabel labelFisico = new JLabel("Sintoma físico: ");
-	private JTextField valorFisico;
-	private JLabel labelLocal = new JLabel("Local: ");
-	private JTextField valorLocal;	
+	private JTextField valorCadastro;		
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private String[] novoDado = new String[9];
@@ -33,47 +30,50 @@ public class TelaDetalheSintoma implements ActionListener {
 	private String s;
 
 	public void inserirEditar(int op, ControleDados d, 
-			TelaSintoma ts, int pos) {
+			TelaMental telaMental, int pos) {
 
 		opcao = op;
 		posicao = pos;
 		dados = d;
 
 		if (op == 1) s = "Cadastro sintomas mentais";
-		if (op == 2) s = "Cadastro sintomas fisicos";
-		if (op == 3) s = "Detalhe sintomas mentais";
-		if (op == 4) s = "Detalhe sintomas fisicos";
-
-		janela = new JFrame(s);
-
-		//Preenche dados com dados do sintoma mental clicado
-		if (op == 3) {
-			valorIntensidade = new JTextField(dados.getMentais()[pos].getIntensidade());
-			valorCadastro = new JTextField(dados.getMentais()[pos].getCadastro());
-			valorMental = new JTextField(dados.getMentais()[pos].getNomeMental());
-			valorFisico= new JTextField(200);
-			
-			
-				
-
-		} else if (op == 4) { //Preenche dados com dados do sintoma fisico clicado 
-			valorIntensidade = new JTextField(dados.getFisicos()[pos].getIntensidade());
-			valorCadastro = new JTextField(dados.getMentais()[pos].getCadastro());
-			valorFisico = new JTextField(dados.getFisicos()[pos].getNomeFisico());			
-			valorMental= new JTextField(200);
+		if (op == 2) s = "Detalhe sintomas mentais";
+		
 		
 
+		janela = new JFrame(s);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		janela.setBounds(100, 100, 600, 600);		
+		janela.setLayout(null);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setVisible(true);
+
+		//Preenche dados com dados do sintoma mental clicado
+		if (op == 2) {
+			
+			valorIntensidade = new JTextField(String.valueOf(dados.getMentais()[pos].getIntensidade()));
+			valorCadastro = new JTextField(dados.getMentais()[pos].getCadastro());
+			valorMental = new JTextField(dados.getMentais()[pos].getNomeMental());
+			botaoSalvar.setBounds(120, 175, 115, 30);
+			botaoSalvar.setBackground(Color.pink);
+			botaoSalvar.setForeground(Color.black);
+			botaoExcluir.setBounds(245, 175, 115, 30);
+			botaoExcluir.setBackground(Color.RED);
+			botaoExcluir.setForeground(Color.white);
+			this.janela.add(botaoExcluir);
+			this.janela.add(botaoSalvar);
+			
+							
+		
 		} else { //N�o preenche com dados
 
 			valorMental = new JTextField(200);
 			valorIntensidade = new JTextField(200);
-			valorCadastro = new JTextField(200);
-			
-			valorFisico = new JTextField(200);
-		
+			valorCadastro = new JTextField(200);			
 
 			botaoSalvar.setBounds(245, 175, 115, 30);
 		}
+	
 		
 		labelIntensidade.setBounds(30, 20, 150, 25);
 		valorIntensidade.setBounds(180, 20, 180, 25);
@@ -81,45 +81,41 @@ public class TelaDetalheSintoma implements ActionListener {
 		valorCadastro.setBounds(180, 50, 180, 25);
 		labelMental.setBounds(30, 80, 150, 25);
 		valorMental.setBounds(180, 80, 180, 25);
-		labelFisico.setBounds(30, 80, 180, 25);
-		valorFisico.setBounds(180, 80, 180, 25);				
 		
 		
-		//Coloca os campos relacionados ao nome do sintoma mental
-		if (op == 1 || op == 3 ) {
+		
+		
+		
+		if (op == 1  ) {
+			
 			this.janela.add(labelMental);
 			this.janela.add(valorMental);
-
-		}
-
-		//Coloca campos relacionados ao sintoma fisico
-		if (op == 2 || op == 4) {
-
-			this.janela.add(labelFisico);
-			this.janela.add(valorFisico);
+			this.janela.add(labelIntensidade);
+			this.janela.add(valorIntensidade);
+			this.janela.add(labelCadastro);
+			this.janela.add(valorCadastro);
+			botaoSalvar.setBounds(120, 175, 115, 30);
+			botaoSalvar.setBackground(Color.pink);
+			botaoSalvar.setForeground(Color.black);
+			botaoExcluir.setBounds(245, 175, 115, 30);
+			botaoExcluir.setBackground(Color.RED);
+			botaoExcluir.setForeground(Color.white);
+			this.janela.add(botaoExcluir);
+			this.janela.add(botaoSalvar);
 			
 		}
 
-		//Coloca botoes de excluir e salvar
-		if (op == 3 || op == 4) {
-			botaoSalvar.setBounds(120, 175, 115, 30);
-			botaoExcluir.setBounds(245, 175, 115, 30);
-			this.janela.add(botaoExcluir);
-		}
-
+	
 		this.janela.add(labelMental);
 		this.janela.add(valorMental);
 		this.janela.add(labelIntensidade);
 		this.janela.add(valorIntensidade);
 		this.janela.add(labelCadastro);
-		this.janela.add(valorCadastro);
-		this.janela.add(labelFisico);
-		this.janela.add(valorFisico);
-		
+		this.janela.add(valorCadastro);		
 		this.janela.add(botaoSalvar);
-
 		this.janela.setLayout(null);
-
+		this.janela.setBounds(100, 100, 600, 600);
+		this.janela.setVisible(true);
 		this.janela.setSize(400, 250);
 		this.janela.setVisible(true);
 
@@ -132,33 +128,27 @@ public class TelaDetalheSintoma implements ActionListener {
 		Object src = e.getSource();
 		if(src == botaoSalvar) {
 			try {
-				boolean res;
+				boolean res = true;
 				if(opcao == 1) //cadastro de novo aluno
 					novoDado[0] = Integer.toString(dados.getQtdMentais());
-				else if (opcao == 2) // cadastro de novo prof
-					novoDado[0] = Integer.toString(dados.getQtdFisicos());
 				else // edicao de dado existente
-					novoDado[0] = Integer.toString(posicao);
-
-				novoDado[1] =  valorIntensidade.getText();
-				novoDado[2] =  valorCadastro.getText();
+					novoDado[0] = Integer.toString(posicao);						
+				
 				
 
-				if (opcao == 1 || opcao == 3) {
+				if (opcao == 1) 
+					
+					novoDado[1] =  valorIntensidade.getText();
+					novoDado[2] =  valorCadastro.getText();					
 					novoDado[3] =  valorMental.getText();
 					res = dados.inserirEditarMental(novoDado);
-				} else {
-					novoDado[3] =  valorFisico.getText();
-					
-					res = dados.inserirEditarFisicos(novoDado);
-				}
-
+				
 				if(res) {
 					mensagemSucessoCadastro();
 				}
 				else mensagemErroCadastro();
 
-			} catch (NullPointerException exc1) {
+				} catch (NullPointerException exc1) {
 				mensagemErroCadastro();
 			} catch (NumberFormatException exc2) {
 				mensagemErroCadastro();
@@ -168,18 +158,13 @@ public class TelaDetalheSintoma implements ActionListener {
 		if(src == botaoExcluir) {
 			boolean res = false;
 
-			if (opcao == 3) {//exclui aluno
+			if (opcao == 2) {//exclui aluno
 				res = dados.removerMental(posicao);
 				if (res) mensagemSucessoExclusao(); 
 				else mensagemErroExclusaoMental(); 
 			}
 				
-			if (opcao == 4){ //exclui professor
-				res = dados.removerFisico(posicao);
-				if (res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoFisico(); 
-			}
-
+			
 
 			
 		}

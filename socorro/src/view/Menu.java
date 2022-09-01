@@ -6,10 +6,8 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -17,21 +15,29 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import control.*;
 
+/**
+ * Tela principal.
+ * 
+ * @author Mylena e Sabrina.
+ * @since 2022
+ * @version 1.0 
+ 
+ */
 
 public class Menu implements ActionListener {
 	
 	private static JFrame janela = new JFrame("Meu diário menstrual");
 	private static JLabel titulo = new JLabel("O que você deseja fazer?");
 	private static JButton pessoa = new JButton("Cadastrar pessoa");
-	private static JButton ciclo = new JButton("Cadastrar novo ciclo");
+	private static JButton ciclo = new JButton("Ciclos");
 	private static JButton mental = new JButton("Sintomas mentais");
 	private static JButton fisico = new JButton("Sintomas físicos");
-	private static JButton relatorio = new JButton("Diários");
 	public static ControleDados dados = new ControleDados();
 	private JPanel painel = new JPanel (); 
 	
 		
 	public Menu() {
+
 		
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		janela.setBounds(100, 100, 600, 600);
@@ -53,7 +59,7 @@ public class Menu implements ActionListener {
 		janela.add(ciclo);
 		janela.add(fisico);
 		janela.add(mental);
-		janela.add(relatorio);
+		
 		
 		pessoa.setFont(new Font("Arial", Font.PLAIN, 20));
 		pessoa.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));		
@@ -80,15 +86,10 @@ public class Menu implements ActionListener {
 		mental.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
 		ciclo.setOpaque(true);
 		mental.setBackground(new Color(189, 224, 254));
-		mental.setForeground(Color.DARK_GRAY);			
+		mental.setForeground(Color.BLACK);			
 		mental.setBounds(50, 310, 500, 50);
 		
-		relatorio.setFont(new Font("Arial", Font.PLAIN, 20));
-		relatorio.setBorder(BorderFactory.createLineBorder(Color.magenta, 2));
-		relatorio.setOpaque(true);
-		relatorio.setBackground(new Color(162, 210, 255));
-		relatorio.setForeground(Color.DARK_GRAY);			
-		relatorio.setBounds(50, 390, 500, 50);
+		
 		
 
 		}
@@ -100,35 +101,29 @@ public class Menu implements ActionListener {
 		ciclo.addActionListener(menu);
 		fisico.addActionListener(menu);
 		mental.addActionListener(menu);
-		relatorio.addActionListener(menu);
+	
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();	
 		
 		if(src == mental)
-			new TelaSintoma().mostrarDados(dados, 1);
+			new TelaMental().mostrarDados(dados, 1);
 		
 		if(src == fisico)
-			new TelaSintoma().mostrarDados(dados, 2);
+			new TelaFisico().mostrarDados(dados, 2);
 		
 		if(src == pessoa) {
 			new CadastrarPessoa().setVisible(false);
 			}
 		if(src == ciclo) {
-			new CadastrarCiclo().setVisible(false);
+			new TelaCiclo().mostrarDados(dados, 3);
 			}
-		//if(src == relatorio) {
-			//new TelaDiario().setVisible(false);
-			//}
+		
 		
 	
 		
-		//if(src == curso)
-			//JOptionPane.showMessageDialog(null, 
-					//"Ainda precisam ser implementadas as funcionalidades\n"
-					//+ "relacionadas a curso e a matr�cula", null, 
-					//JOptionPane.INFORMATION_MESSAGE);
+		
 		
 		
 			

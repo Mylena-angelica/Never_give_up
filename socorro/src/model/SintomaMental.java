@@ -1,5 +1,12 @@
 package model;
 
+/**
+* Classe SintomaMental simula o comportamento de um sintoma mental e herda de Sintoma.
+* @author Mylena e Sabrina.
+* @since 2022
+* @version 2.0
+**/
+
 
 
 public class SintomaMental extends Sintoma {
@@ -8,6 +15,14 @@ public class SintomaMental extends Sintoma {
 	
 	
 	
+	/**
+	 * Gera um sintoma mental.
+	 * 
+	 * @param nomeMental      nome do tipo de sintoma
+	 * @param intensidade     intensidade que foi sentido o sintoma
+	 * @param cadastro        data em que foi cadastrado
+	 
+	 */	
 	
 	public SintomaMental(String n, int i, String d, int nu) {
 		this.nomeMental = n;
@@ -31,7 +46,7 @@ public class SintomaMental extends Sintoma {
 		this.nomeMental = nomeMental;
 	}
 	
-@Override
+	@Override
 	public int getIntensidade() {
 		return intensidade;
 	}
@@ -46,6 +61,8 @@ public class SintomaMental extends Sintoma {
 	public void setCadastro(String cadastro) {
 		this.cadastro= cadastro;
 	}
+
+	
 
 
 	

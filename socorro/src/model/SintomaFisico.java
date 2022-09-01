@@ -1,13 +1,26 @@
 package model;
 
-
+/**
+* Classe SintomaFisico simula o comportamento de um sintoma físico e herda de Sintoma.
+* @author Mylena e Sabrina.
+* @since 2022
+* @version 2.0
+**/
 
 public class SintomaFisico extends Sintoma {
 	
 	public String nomeFisico;
 	public String local;
 	
-	
+	/**
+	 * Gera um sintoma físico.
+	 * 
+	 * @param nomeFisico      nome do tipo de sintoma
+	 * @param local           local que sentiu o sintoma
+	 * @param intensidade     intensidade que foi sentido o sintoma
+	 * @param cadastro        data em que foi cadastrado
+	 
+	 */	
 	
 	public SintomaFisico(String n, String l, int i, String cadastro,int nu) {
 		this.nomeFisico = n;

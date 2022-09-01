@@ -1,12 +1,19 @@
 package model;
 
-import java.util.Date;
+	/**
+	 * Classe Ciclo simula o comportamento do ciclo menstrual e nela está agregado SintomaMental
+	 *e SintomaFisico, já com Pessoa é uma associação simples.
+	 * @author Mylena e Sabrina.
+	 * @since 2022
+	 * @version 2.0
+	 **/
+
 
 public class Ciclo {
 	
 	private Pessoa pessoa;
-	private Date dataInicioMenstruacao;
-	private Date dataFinalMenstruacao;
+	private String dataInicioMenstruacao;
+	private String dataFinalMenstruacao;
 	private int duracaoCiclo;
 	private SintomaMental sintomaMental;
 	private SintomaFisico sintomaFisico;
@@ -14,12 +21,17 @@ public class Ciclo {
 	
 	
 	
-	public Ciclo(Pessoa p, Date i, Date f, int d, SintomaMental m, SintomaFisico s) {
+	
+	public Ciclo(Pessoa p, String i, String f, int d, SintomaMental m, SintomaFisico s) {
 		dataInicioMenstruacao = i;
 		dataFinalMenstruacao = f;
 		duracaoCiclo = d; 
 		sintomaMental = m;
 		sintomaFisico = s;
+	}
+
+	public Ciclo(String string, String string2, int parseInt, String string3, int parseInt2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -64,22 +76,22 @@ public class Ciclo {
 	}
 
 
-	public  Date getDataInicioMenstruacao() {
+	public  String getDataInicioMenstruacao() {
 		return dataInicioMenstruacao;
 	}
 
 
-	public void setDataInicioMenstruacao(Date dataInicioMenstruacao) {
+	public void setDataInicioMenstruacao(String dataInicioMenstruacao) {
 		this.dataInicioMenstruacao = dataInicioMenstruacao;
 	}
 
 
-	public  Date getDataFinalMenstruacao() {
+	public  String getDataFinalMenstruacao() {
 		return dataFinalMenstruacao;
 	}
 
 
-	public void setDataFinalMenstruacao(Date dataFinalMenstruacao) {
+	public void setDataFinalMenstruacao(String dataFinalMenstruacao) {
 		this.dataFinalMenstruacao = dataFinalMenstruacao;
 	}
 
@@ -110,6 +122,7 @@ public class Ciclo {
 	public void setSintomaFisico(SintomaFisico sintomaFisico) {
 		this.sintomaFisico = sintomaFisico;
 	}
+
 
 
 	

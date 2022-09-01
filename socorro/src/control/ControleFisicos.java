@@ -1,7 +1,9 @@
 package control;
 
-
 import model.*;
+
+
+
 
 public class ControleFisicos{
 	private SintomaFisico[] f;

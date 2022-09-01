@@ -1,9 +1,17 @@
 package control;
 
-
-import java.util.Date;
-
 import model.*;
+
+/**
+ * Classe que contém toda a lógica por trás da classe CadastrarPessoa.
+ * 
+ * @author Mylena e Sabrina.
+ * @since 2022
+ * @version 1.0 
+ * @see CadastrarPessoa.
+ 
+ */
+
 
 public class ControlePessoa{
 	private Pessoa[] p;
@@ -19,7 +27,7 @@ public class ControlePessoa{
 		return p[i].getNome();
 	}
 	
-	public Date getNascimento(int i) {
+	public String getNascimento(int i) {
 		return p[i].getNascimento();
 	}
 	
